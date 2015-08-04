@@ -1,0 +1,65 @@
+# -- htpasswd
+
+#AuthType Basic
+#AuthName "Authentication required"
+#AuthUserFile /home/username/public_html/.htpasswd
+#Require valid-user
+
+# -- Charset
+
+AddDefaultCharset utf-8
+AddCharset utf-8 .html .css .js .xml .json .rss
+
+# -- Caching options
+
+Header append Cache-Control "public"
+FileETag None
+
+ExpiresActive On
+ExpiresDefault				"access plus 0 seconds"
+ExpiresByType text/cache-manifest	"access plus 0 seconds"
+ExpiresByType text/html			"access plus 1 seconds"
+
+ExpiresByType text/xml			"access plus 0 seconds"
+ExpiresByType application/xml		"access plus 0 seconds"
+ExpiresByType application/json		"access plus 0 seconds"
+ExpiresByType application/rss+xml	"access plus 1 hour"
+
+ExpiresByType image/gif			"access plus 1 month"
+ExpiresByType image/png			"access plus 1 month"
+ExpiresByType image/jpg			"access plus 1 month"
+ExpiresByType image/jpeg		"access plus 1 month"
+ExpiresByType video/ogg			"access plus 1 month"
+ExpiresByType audio/ogg			"access plus 1 month"
+ExpiresByType video/mp4			"access plus 1 month"
+ExpiresByType video/webm		"access plus 1 month"
+
+ExpiresByType application/x-shockwave-flash	"access plus 2 months"
+ExpiresByType text/css			"access plus 2 months"
+ExpiresByType application/javascript	"access plus 2 months"
+ExpiresByType text/javascript		"access plus 2 months"
+
+ExpiresByType image/x-icon		"access plus 1 week"
+
+
+# -- Redirection
+
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+
+RewriteRule ^image/.* image.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !favicon\.ico$
+RewriteCond %{REQUEST_FILENAME} !a\.\.php$
+RewriteCond %{REQUEST_URI} !^/javascript/(.+)
+RewriteCond %{REQUEST_URI} !^/downloads/(.+)
+RewriteCond %{REQUEST_URI} !^/uploads/(.+)
+RewriteCond %{REQUEST_URI} !^/images/(.+)
+RewriteCond %{REQUEST_URI} !^/fonts/(.+)
+RewriteCond %{REQUEST_URI} !^/css/(.+)
+
+RewriteRule ^(.+)$ index.php [L]

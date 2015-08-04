@@ -1,0 +1,10 @@
+
+@font-face 					{ font-family: 'FontAwesome'; src: url('/fonts/fontawesome-webfront.eot'); src: url('/fonts/fontawesome-webfront.ttf') format('truetype'); font-weight: normal; font-style: normal;}
+@font-face 					{ font-family: 'Montserrat-UL'; src: url('/fonts/Montserrat-UltraLight.otf');  }
+@font-face 					{ font-family: 'Montserrat-Bold'; src: url('/fonts/Montserrat-Bold.otf');  }
+@font-face 					{ font-family: 'Montserrat-Bold'; src: url('/fonts/Montserrat-SemiBold.otf');  }
+
+h1 { font-family: 'Montserrat-Bold';}
+body { font-family: 'Montserrat-UL'; }
+
+.welcome { padding: 150px 0; }
